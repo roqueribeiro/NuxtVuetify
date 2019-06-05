@@ -1,6 +1,6 @@
 <template>
   <v-container class="pt-3 pl-0 pr-0 pb-0">
-    <ProductsList :products="products" />
+    <ProductsList :products="products"></ProductsList>
   </v-container>
 </template>
 
@@ -10,6 +10,18 @@ import ProductsList from '~/components/commons/ProductsList.vue'
 export default {
   components: {
     ProductsList
+  },
+  head() {
+    return {
+      title: 'Products',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Products'
+        }
+      ]
+    }
   },
   data() {
     return {
@@ -30,12 +42,16 @@ export default {
     async getProducts(search) {
       this.$bus.$emit('LOADING', true)
       await this.$axios
-        .$get('/sites/MLB/search', {
-          params: {
-            q: search,
-            limit: 4
-          }
-        })
+        .$get(
+          '/sites/MLB/search',
+          {
+            params: {
+              q: search,
+              limit: 4
+            }
+          },
+          { useCache: true }
+        )
         .then(response => {
           this.products = response.results
         })

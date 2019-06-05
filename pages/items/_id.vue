@@ -44,6 +44,18 @@
 </template>
 <script>
 export default {
+  head() {
+    return {
+      title: `Product Details - ${this.title}`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.title
+        }
+      ]
+    }
+  },
   data() {
     return {
       title: '',

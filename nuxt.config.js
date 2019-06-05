@@ -9,10 +9,16 @@ module.exports = {
    */
   head: {
     title: pkg.name,
+    titleTemplate: '%s - Nuxt.js',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description }
+      { hid: 'description', name: 'description', content: pkg.description },
+      {
+        hid: 'keywords',
+        name: 'keywords',
+        content: 'VueJS, NuxtJS, Vue, Nuxt, JS'
+      }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -52,6 +58,50 @@ module.exports = {
    */
   axios: {
     baseURL: 'https://api.mercadolibre.com'
+  },
+
+  manifest: {
+    name: 'Nuxt Vuetify',
+    lang: 'pt-BR',
+    short_name: 'Nuxt Vuetify',
+    start_url: '/',
+    display: 'standalone',
+    orientation: 'portrait',
+    background_color: '#FFFFFF',
+    theme_color: '#FFEA00',
+    description: 'Server Side Rendering With Nuxt And Vuetify',
+    icons: [
+      {
+        src: '/logo.png',
+        sizes: '48x48',
+        type: 'image/png'
+      },
+      {
+        src: '/logo.png',
+        sizes: '72x72',
+        type: 'image/png'
+      },
+      {
+        src: '/logo.png',
+        sizes: '96x96',
+        type: 'image/png'
+      },
+      {
+        src: '/logo.png',
+        sizes: '144x144',
+        type: 'image/png'
+      },
+      {
+        src: '/logo.png',
+        sizes: '168x168',
+        type: 'image/png'
+      },
+      {
+        src: '/logo.png',
+        sizes: '192x192',
+        type: 'image/png'
+      }
+    ]
   },
 
   /*

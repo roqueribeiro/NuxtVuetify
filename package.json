@@ -1,7 +1,7 @@
 {
-  "name": "ServerSideRenderingWithNuxt",
+  "name": "nuxtvuetify",
   "version": "1.0.0",
-  "description": "Server Side Rendering With Nuxt",
+  "description": "Server Side Rendering With Nuxt And Vuetify",
   "author": "Roque Ribeiro",
   "private": true,
   "scripts": {
