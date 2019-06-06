@@ -34,30 +34,19 @@ export default {
       this.getProducts(to.query.search)
     }
   },
+  async asyncData({ store, query }) {
+    await store.dispatch('GET_PRODUCTS', query.search)
+    return { products: store.state.products.results }
+  },
   mounted() {
-    this.getProducts(this.$route.query.search)
+    this.$bus.$emit('BREADCRUMBS_CATEGORIES', this.$route.query.search)
   },
   methods: {
     async getProducts(search) {
-      this.$bus.$emit('LOADING', true)
-      await this.$axios
-        .$get(
-          '/sites/MLB/search',
-          {
-            params: {
-              q: search,
-              limit: 4
-            }
-          },
-          { useCache: true }
-        )
-        .then(response => {
-          this.products = response.results
-        })
-        .finally(() => {
-          this.$bus.$emit('LOADING', false)
-          this.$bus.$emit('BREADCRUMBS_CATEGORIES', search)
-        })
+      await this.$store.dispatch('GET_PRODUCTS', search).then(() => {
+        this.products = this.$store.state.products.results
+        this.$bus.$emit('BREADCRUMBS_CATEGORIES', search)
+      })
     }
   }
 }

@@ -67,36 +67,32 @@ export default {
       categories: []
     }
   },
+  async asyncData({ store, params }) {
+    await store.dispatch('GET_PRODUCT_DETAILS', params.id)
+    return {
+      title: store.state.product_details[0].title,
+      price: store.state.product_details[0].price,
+      condition: store.state.product_details[0].condition,
+      picture: store.state.product_details[0].pictures[0].url,
+      sold_quantity: store.state.product_details[0].sold_quantity,
+      description: store.state.product_details[1].plain_text
+    }
+  },
   mounted() {
     this.getProductDetailsAndDescriptions(this.$route.params.id)
   },
   methods: {
-    async getProductDetails(id) {
-      const data = await this.$axios.$get(`/items/${id}`)
-      return data
-    },
-    async getProductDescriptions(id) {
-      const data = await this.$axios.$get(`/items/${id}/description`)
-      return data
-    },
     async getProductDetailsAndDescriptions(id) {
-      this.$bus.$emit('LOADING', true)
-      await Promise.all([
-        this.getProductDetails(id),
-        this.getProductDescriptions(id)
-      ])
-        .then(response => {
-          this.title = response[0].title
-          this.price = response[0].price
-          this.condition = response[0].condition
-          this.picture = response[0].pictures[0].url
-          this.sold_quantity = response[0].sold_quantity
-          this.description = response[1].plain_text
-          this.$bus.$emit('BREADCRUMBS_CATEGORIES', response[0].title)
-        })
-        .finally(() => {
-          this.$bus.$emit('LOADING', false)
-        })
+      const details = this.$store.state.product_details
+      await this.$store.dispatch('GET_PRODUCT_DETAILS', id).then(response => {
+        this.title = details[0].title
+        this.price = details[0].price
+        this.condition = details[0].condition
+        this.picture = details[0].pictures[0].url
+        this.sold_quantity = details[0].sold_quantity
+        this.description = details[1].plain_text
+        this.$bus.$emit('BREADCRUMBS_CATEGORIES', details[0].title)
+      })
     }
   }
 }

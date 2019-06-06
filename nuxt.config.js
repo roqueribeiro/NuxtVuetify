@@ -33,7 +33,11 @@ module.exports = {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: {
+    color: '#1876D2',
+    height: '3px',
+    continuous: true
+  },
 
   /*
    ** Global CSS
@@ -57,7 +61,7 @@ module.exports = {
    ** Axios module configuration
    */
   axios: {
-    baseURL: 'https://api.mercadolibre.com'
+    baseURL: 'http://localhost:3000/api'
   },
 
   manifest: {
@@ -103,6 +107,8 @@ module.exports = {
       }
     ]
   },
+
+  serverMiddleware: ['~/api/index.js'],
 
   /*
    ** Build configuration

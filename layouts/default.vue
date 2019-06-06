@@ -8,12 +8,6 @@
       </v-layout>
     </v-toolbar>
     <v-content>
-      <v-progress-linear
-        v-show="loading"
-        :indeterminate="true"
-        class="ma-0"
-        height="4"
-      ></v-progress-linear>
       <v-container class="pt-0">
         <Breadcrumb />
         <nuxt />
@@ -42,14 +36,10 @@ export default {
           to: '/'
         }
       ],
-      title: 'Server Side Rendering',
-      loading: false
+      title: 'Server Side Rendering'
     }
   },
   mounted() {
-    this.$bus.$on('LOADING', state => {
-      this.loading = state
-    })
     this.$bus.$on('SEARCH_FIELD', search => {
       this.$router.push({
         path: '/items',

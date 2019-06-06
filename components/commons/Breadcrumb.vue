@@ -16,6 +16,12 @@ export default {
       categories: []
     }
   },
+  async asyncData({ store, query }) {
+    await store.dispatch('GET_PRODUCTS', query.search)
+    return {
+      categories: store.state.products.filters[0].values[0].path_from_root
+    }
+  },
   mounted() {
     this.$bus.$on('BREADCRUMBS_CATEGORIES', search => {
       this.getCategories(search)
@@ -29,18 +35,11 @@ export default {
       })
     },
     async getCategories(search) {
-      await this.$axios
-        .$get('/sites/MLB/search', {
-          params: {
-            q: search,
-            limit: 4
-          }
-        })
-        .then(response => {
-          if (response.filters.length > 0)
-            this.categories = response.filters[0].values[0].path_from_root
-          else this.categories = []
-        })
+      await this.$store.dispatch('GET_PRODUCTS', search).then(() => {
+        if (this.$store.state.products.filters.length > 0)
+          this.categories = this.$store.state.products.filters[0].values[0].path_from_root
+        else this.categories = []
+      })
     }
   }
 }
