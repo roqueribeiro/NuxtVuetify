@@ -14,9 +14,10 @@ export const mutations = {
 
 export const actions = {
   async GET_PRODUCTS({ commit }, search) {
-    const response = await this.$axios.$get('/products', {
+    const response = await this.$axios.$get('/sites/MLB/search', {
       params: {
-        search: search
+        q: search,
+        limit: 4
       }
     })
 
@@ -24,8 +25,8 @@ export const actions = {
   },
   async GET_PRODUCT_DETAILS({ commit }, id) {
     const response = await Promise.all([
-      await this.$axios.$get(`/productAttributes/${id}`),
-      await this.$axios.$get(`/productDescription/${id}`)
+      await this.$axios.$get(`/items/${id}`),
+      await this.$axios.$get(`/items/${id}/description`)
     ])
 
     commit('SET_PRODUCT_DETAILS', response)

@@ -61,7 +61,7 @@ module.exports = {
    ** Axios module configuration
    */
   axios: {
-    baseURL: 'http://localhost:3000/api'
+    baseURL: 'https://api.mercadolibre.com'
   },
 
   manifest: {
