@@ -61,7 +61,7 @@ module.exports = {
    ** Axios module configuration
    */
   axios: {
-    baseURL: 'http://localhost:3000/api'
+    baseURL: `http://${pkg.config.nuxt.host}:${pkg.config.nuxt.port}/api`
   },
 
   manifest: {

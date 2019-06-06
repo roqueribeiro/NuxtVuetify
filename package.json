@@ -4,6 +4,12 @@
   "description": "Server Side Rendering With Nuxt And Vuetify",
   "author": "Roque Ribeiro",
   "private": true,
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "80"
+    }
+  },
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
     "build": "nuxt build",

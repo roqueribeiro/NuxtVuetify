@@ -4,6 +4,7 @@ const axios = require('axios')
 const baseUrl = 'https://api.mercadolibre.com'
 
 app.get('/products', async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
   try {
     const response = await axios.get(
       `${baseUrl}/sites/MLB/search`,
@@ -22,6 +23,7 @@ app.get('/products', async (req, res) => {
 })
 
 app.get('/productAttributes/:id', async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
   try {
     const response = await axios.get(`${baseUrl}/items/${req.params.id}`, {
       useCache: true
@@ -33,6 +35,7 @@ app.get('/productAttributes/:id', async (req, res) => {
 })
 
 app.get('/productDescription/:id', async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*')
   try {
     const response = await axios.get(
       `${baseUrl}/items/${req.params.id}/description`,
