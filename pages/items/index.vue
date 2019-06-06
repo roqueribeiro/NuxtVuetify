@@ -25,8 +25,7 @@ export default {
   },
   data() {
     return {
-      products: [],
-      categories: []
+      products: []
     }
   },
   watch: {
