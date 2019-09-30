@@ -10,22 +10,32 @@ module.exports = {
   head: {
     title: pkg.name,
     titleTemplate: '%s - Nuxt.js',
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: pkg.description },
+    meta: [{
+        charset: 'utf-8'
+      },
+      {
+        name: 'viewport',
+        content: 'width=device-width, initial-scale=1'
+      },
+      {
+        hid: 'description',
+        name: 'description',
+        content: pkg.description
+      },
       {
         hid: 'keywords',
         name: 'keywords',
         content: 'VueJS, NuxtJS, Vue, Nuxt, JS'
       }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+    link: [{
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.ico'
+      },
       {
         rel: 'stylesheet',
-        href:
-          'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
+        href: 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons'
       }
     ]
   },
@@ -74,8 +84,7 @@ module.exports = {
     background_color: '#FFFFFF',
     theme_color: '#FFEA00',
     description: 'Server Side Rendering With Nuxt And Vuetify',
-    icons: [
-      {
+    icons: [{
         src: '/logo.png',
         sizes: '48x48',
         type: 'image/png'
@@ -131,7 +140,10 @@ module.exports = {
           enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules)/
+          exclude: /(node_modules)/,
+          options: {
+            fix: true
+          }
         })
       }
     }
